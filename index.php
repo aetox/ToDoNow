@@ -1,11 +1,26 @@
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToDoNow</title>
-</head>
-<body>
-    <h1>Bonjour</h1>
-</body>
-</html>
+<?php include_once('entete.php') ?>
+
+    
+
+    <div class="form">
+
+        <h1>Connexion</h1>
+
+        <form method="post" class="connexion">
+                <label for="mail">Mail :</label>
+                <input type="mail" name =" mail">
+
+                <label for="password">Mot de passe :</label>
+                <input type="password" name ="password">
+
+                <button type="submit">Se connecter</button>
+            </form>
+            <h2 class="message_contact"> Pas encore de compte ? <a href="inscription.php"> Créer un compte</a></h2>
+
+    </div>
+
+
+
+
+
+<?php include_once('footer.php') ?>
