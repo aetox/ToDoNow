@@ -1,5 +1,12 @@
 <?php include_once('entete.php') ?>
-    <h1>Bienvenu (Utilisateur nom)</h1>
+<?php
+
+session_start();
+
+
+?>
+
+    <h1>Bienvenue <?php echo $_SESSION['mail']?> </h1>
 
 
 
