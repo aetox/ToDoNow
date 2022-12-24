@@ -5,8 +5,6 @@
 
 <?php
 
-session_start();
-
 $info = array();
 
 if(isset($_POST['nom'],$_POST['prenom'],$_POST['mail'],$_POST['password'],$_POST['password_confirm'])){//l'utilisateur à cliqué sur "S'inscrire", on demande donc si les champs sont défini avec "isset"
