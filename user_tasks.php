@@ -39,30 +39,57 @@ $user_id_user = $_SESSION['user_id'];
     <?php 
         // Affichage taches en cours :
 
-        $query_info = "SELECT * FROM `tasks` WHERE user_id='$user_id_user'";
-        $result_info = mysqli_query($mysqli,$query_info) or die(mysqli_error($mysqli));
+        $query_tasks = "SELECT * FROM `tasks` WHERE user_id='$user_id_user'";
+        $result_tasks = mysqli_query($mysqli,$query_tasks) or die(mysqli_error($mysqli));
     
-        if (mysqli_num_rows($result_info) > 0) { ?>
+        if (mysqli_num_rows($result_tasks) > 0) {    ?>
 
+                        <table>
 
-    <?php } else {  ?>
+                            <tr>
+                                <th>Titre</th>
+                                <th>Date Début</th>
+                                <th>Date Fin</th>
+                                <th>Description</th>
+                                <th>Statut</th>
+                            </tr>
+                        </table>    
+
+            
+            <?php
+            while($task = mysqli_fetch_array($result_tasks)){ ?>
+                    
+                    <table>
+                            <tr>
+                                <td><?php echo $task['Titre'] ?></td>
+                                <td><?php echo $task['date_debut'] ?></td>
+                                <td><?php echo $task['date_fin'] ?></td>
+                                <td><?php echo $task['description'] ?></td>
+                                <td><form action="#" method="post"><input type="checkbox" name="#" id="#"></form></td>
+
+                            </tr>
+                    </table>
+
+                       <?php } ?>
 
         <?php } ?>
 
 
 <?php 
 
-        if(isset($_POST['ajout_tache_form'])){
+        if(isset($_POST['ajout_tache_button'])){
+
+            extract($_POST);
         
-            if(!mysqli_query($mysqli, "INSERT INTO tasks SET 
+            if(mysqli_query($mysqli, "INSERT INTO tasks SET 
             Titre='" . $_POST['titre_nouvelle_tache'] . "',
             date_debut ='" . $_POST['debut_nouvelle_tache'] . "',
             date_fin ='" . $_POST['fin_nouvelle_tache'] . "',
             description ='" . $_POST['decription_nouvelle_tache'] . "', 
-            user_id ='" . $user_id_user . "', ")){
-                array_push($info, "Erreur").mysqli_error($mysqli);
-              } else {
+            user_id ='" . $user_id_user . "'") or die(mysqli_error($mysqli)) ){
                 array_push($info, "Vous êtes inscrit !");
+              } else {
+                array_push($info, "Erreur").mysqli_error($mysqli);
               }
 
        
