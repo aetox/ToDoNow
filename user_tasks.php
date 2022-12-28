@@ -128,7 +128,7 @@ function deleteTask($idtask){
                                 <td><?php echo $task['description'] ?></td>
                                 <td><?php echo "En cours" ?></td>
                                 <td><?php echo $task['id_tache'] ?></td>
-                                <!-- le bouton supprime toute les taches ciao -->
+                                <!-- le bouton supprime toute les taches -->
                                 <td><button onclick="<?php mysqli_query($mysqli, "DELETE FROM `tasks` WHERE `id_tache` = $idtask") or die(mysqli_error($mysqli)); ?>">Supprimer</button></td>
 
 
