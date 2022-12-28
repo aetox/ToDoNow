@@ -6,7 +6,26 @@
 // fonction ajout d'une tache dans la base de donnée de l'utilisateur
 // Requete qui recupere les info de l'utilisateur connecté et le stock dans un tableau
 
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
 $user_id_user = $_SESSION['user_id'];
+
+// function changement format date
+
+function transformDate($date){
+
+    $dt = Datetime::createFromFormat('Y-m-d',$date);
+    return $dt-> format('d/m/Y');
+
+}
+
+function deleteTask($idtask){
+
+   mysqli_query($mysqli, "DELETE FROM `tasks` WHERE `id_tache` = $idtask") or die(mysqli_error($mysqli));
+
+}
+
 
 
 ?>
@@ -41,32 +60,80 @@ $user_id_user = $_SESSION['user_id'];
 
         $query_tasks = "SELECT * FROM `tasks` WHERE user_id='$user_id_user'";
         $result_tasks = mysqli_query($mysqli,$query_tasks) or die(mysqli_error($mysqli));
+
+        function dateDiff($date1, $date2){
+            $diff = abs($date1 - $date2); // abs pour avoir la valeur absolute, ainsi éviter d'avoir une différence négative
+            $retour = array();
+         
+            $tmp = $diff;
+            $retour['second'] = $tmp % 60;
+         
+            $tmp = floor( ($tmp - $retour['second']) /60 );
+            $retour['minute'] = $tmp % 60;
+         
+            $tmp = floor( ($tmp - $retour['minute'])/60 );
+            $retour['hour'] = $tmp % 24;
+         
+            $tmp = floor( ($tmp - $retour['hour'])  /24 );
+            $retour['day'] = $tmp;
+         
+            return $retour;
+        }
     
         if (mysqli_num_rows($result_tasks) > 0) {    ?>
 
-                        <table>
-
+                        <table id="task_titre">
                             <tr>
                                 <th>Titre</th>
                                 <th>Date Début</th>
                                 <th>Date Fin</th>
+                                <th>Jours restants</th>
                                 <th>Description</th>
                                 <th>Statut</th>
+                                <th>ID tache</th>
+                                <th>Supprimer</th>
+
+
                             </tr>
-                        </table>    
+                        </table> 
+                        <hr>   
 
             
             <?php
             while($task = mysqli_fetch_array($result_tasks)){ ?>
+
+                    <?php
+                    $debut = new DateTime('now'); 
+                    $fin = new DateTime($task['date_fin']);
+                    $interval = $debut->diff($fin);
+
+                    // Ajouter if() afin de vérifier si les jours restants son négatifs ou non
+
+                    $idtask = $task['id_tache'] ;
+
                     
-                    <table>
+                    
+                    ?>
+
+      
+            
+                    
+                    <table class="task">
                             <tr>
                                 <td><?php echo $task['Titre'] ?></td>
-                                <td><?php echo $task['date_debut'] ?></td>
-                                <td><?php echo $task['date_fin'] ?></td>
+                                <td><?php echo transformDate($task['date_debut']) ?></td>
+                                <td><?php echo transformDate($task['date_fin']) ?></td>
+                                <!-- Colonne jours restants ?  -->
+                                <td><?php echo $interval->format('%R%d');?> jours restants</td>
                                 <td><?php echo $task['description'] ?></td>
-                                <td><form action="#" method="post"><input type="checkbox" name="#" id="#"></form></td>
+                                <td><?php echo "En cours" ?></td>
+                                <td><?php echo $task['id_tache'] ?></td>
+                                <!-- le bouton supprime toute les taches ciao -->
+                                <td><button onclick="<?php mysqli_query($mysqli, "DELETE FROM `tasks` WHERE `id_tache` = $idtask") or die(mysqli_error($mysqli)); ?>">Supprimer</button></td>
 
+
+
+                                
                             </tr>
                     </table>
 

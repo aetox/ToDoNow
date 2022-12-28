@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/tasks.css">
 
     <title>ToDoNow</title>
 </head>
