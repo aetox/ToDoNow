@@ -1,0 +1,33 @@
+table#task_titre {
+    background-color: white;
+}
+
+table#task_titre th {
+
+    border: 2px solid white;
+
+
+    width: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+table.task {
+   
+    background-color: white;
+
+
+}
+table.task td {
+
+    border: 2px solid white;
+
+    text-align: center;
+
+
+    width: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
