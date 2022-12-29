@@ -1,14 +1,8 @@
-<?php include_once('entete.php') ?>
-<?php include_once('db.php') ?>
+<?php include_once('php/entete.php') ?>
 
 
   <h1>Organisez mieux vos tâches avec TodoNow</h1>
 
 
 
-
-
-
-
-
-<?php include_once('footer.php') ?>
+<?php include_once('php/footer.php') ?>
