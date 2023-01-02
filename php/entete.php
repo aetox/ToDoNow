@@ -11,8 +11,13 @@ include_once('db.php')
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="CSS/style.css">
     <link rel="stylesheet" href="CSS/tasks.css">
+
+    <!-- AJAX -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     <title>ToDoNow</title>
 </head>

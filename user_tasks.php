@@ -7,13 +7,39 @@
 
     <h2>Taches en cours :</h2>
 
+    <table id="task_titre">
+                            <tr>
+                                <th>Titre</th>
+                                <th>Date Début</th>
+                                <th>Date Fin</th>
+                                <th>Jours restants</th>
+                                <th>Description</th>
+                                <th>Statut</th>
+                                <th>ID tache</th>
+                                <th>Supprimer</th>
+
+
+                            </tr>
+                        </table> 
+                        <hr>   
+
+    <script>
+    afficherTask();
+    </script>
+
+    <div id="tasks">
+
+    </div>
+
     <!-- Ajouter fonction afficher taches -->
 
     <!-- Dans le fichier faire en sorte que ça selectionne des divs et qu'on inserte directemet du code 
 dedans, il fautt :
 - creer les divs
 -les selectionnees ett ajouteer contenu avec boucle for -->
-    <?php include_once('php/taches_functions/afficherTask.php') ?>
+    <?php 
+    // include_once('php/taches_functions/afficherTask.php')
+     ?>
 
 
 
